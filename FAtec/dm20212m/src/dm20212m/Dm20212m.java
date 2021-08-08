@@ -6,6 +6,7 @@
 package dm20212m;
 
 import dm20212m.view.manterpessoa.ManterPessoa;
+import dm20212m.view.manterpet.ManterPet;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,10 +21,13 @@ public class Dm20212m {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        int ops = Integer.parseInt(JOptionPane.showInputDialog("PESSOA = 1"));
+        int ops = Integer.parseInt(JOptionPane.showInputDialog("PESSOA = 1  PET = 2"));
         
         if( ops == 1){
             ManterPessoa.montarTela();
+        }
+        if (ops == 2){
+            ManterPet.montarTelaPet();
         }
         
         

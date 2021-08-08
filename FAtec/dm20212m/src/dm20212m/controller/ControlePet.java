@@ -5,40 +5,38 @@
  */
 package dm20212m.controller;
 
-import dm20212m.model.bean.Pessoa;
+import dm20212m.model.bean.Pet;
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  *
  * @author marcelo
  */
-public class ControlePessoa {
+public class ControlePet {
     
-    public Pessoa inserirPessoa(Pessoa p){
+     public Pet inserirPet(Pet pe){
         System.out.println("EXE INSERIR");
-            p.setId(1);
-             return p;
+            pe.setIdPet(1);
+             return pe;
     }
-    public List<Pessoa> listarPessoa(Pessoa p){
+     public List<Pet> listarPet(Pet pe){
         System.out.println("EXE LISTAR");
-        List<Pessoa> listaP = new ArrayList<>();
-            listaP.add(p);
+        List<Pet> listaPe= new ArrayList<>();
+            listaPe.add(pe);
             
-             return listaP;
+             return listaPe;
     }
-    public Pessoa buscarPessoa(Pessoa p){
+     public Pet buscarPet(Pet pe){
         System.out.println("EXE BUSCAR");
-             return p;
+             return pe;
     }
-    public Pessoa alterarPessoa(Pessoa p){
+    public Pet alterarPet(Pet pe){
         System.out.println("EXE ALTERAR");
-             return p;
+             return pe;
     }
-    public Pessoa excluirPessoa(Pessoa p){
+    public Pet excluirPet (Pet pe){
         System.out.println("EXE EXCLUIR");
-             return p;
+             return pe;
     }
- 
 }
