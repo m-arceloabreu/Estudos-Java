@@ -3,42 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dm20212m.controller;
+package dm20212m.model.dao;
 
 import dm20212m.model.bean.Pessoa;
-import dm20212m.model.dao.DaoPessoa;
+import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  *
  * @author marcelo
  */
-public class ControlePessoa {
+public class DaoPessoa {
     
-    static DaoPessoa daoP = new DaoPessoa();
+    
     
     
     public Pessoa inserirPessoa(Pessoa p){
-       
-           
-             return daoP.inserirPessoa(p);
+        System.out.println("EXE INSERIR");
+            p.setId(1);
+             return p;
     }
     public List<Pessoa> listarPessoa(Pessoa p){
-     
-             return daoP.listarPessoa(p);
+        System.out.println("EXE LISTAR");
+        List<Pessoa> listaP = new ArrayList<>();
+            listaP.add(p);
+            
+             return listaP;
     }
     public Pessoa buscarPessoa(Pessoa p){
-        
-            return daoP.buscarPessoa(p);
+        System.out.println("EXE BUSCAR");
+             return p;
     }
     public Pessoa alterarPessoa(Pessoa p){
-        
-        return daoP.alterarPessoa(p);
+        System.out.println("EXE ALTERAR");
+             return p;
     }
     public Pessoa excluirPessoa(Pessoa p){
-       
-        return daoP.excluirPessoa(p);
+        System.out.println("EXE EXCLUIR");
+             return p;
     }
- 
+    
 }

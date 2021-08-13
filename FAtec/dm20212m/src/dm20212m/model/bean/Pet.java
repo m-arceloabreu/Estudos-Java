@@ -11,48 +11,48 @@ package dm20212m.model.bean;
  */
 public class Pet {
     
-    private int idPet;
-    private String nomePet;
-    private String idadePet;
+    private int id;
+    private String nome;
+    private String idade;
     private String tipo;
 
-    public Pet(int idPet) {
-        this.idPet = idPet;
+    public Pet(int id) {
+        this.id = id;
     }
 
-    public Pet(String nomePet) {
-        this.nomePet = nomePet;
+    public Pet(String nome) {
+        this.nome = nome;
     }
 
-    public Pet(int idPet, String nomePet, String idadePet, String tipo) {
-        this.idPet = idPet;
-        this.nomePet = nomePet;
-        this.idadePet = idadePet;
+    public Pet(int id, String nome, String idade, String tipo) {
+        this.id = id;
+        this.nome = nome;
+        this.idade = idade;
         this.tipo = tipo;
     }
 
-    public int getIdPet() {
-        return idPet;
+    public int getId() {
+        return id;
     }
 
-    public void setIdPet(int idPet) {
-        this.idPet = idPet;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getNomePet() {
-        return nomePet;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomePet(String nomePet) {
-        this.nomePet = nomePet;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getIdadePet() {
-        return idadePet;
+    public String getIdade() {
+        return idade;
     }
 
-    public void setIdadePet(String idadePet) {
-        this.idadePet = idadePet;
+    public void setIdade(String idade) {
+        this.idade = idade;
     }
 
     public String getTipo() {
@@ -65,8 +65,11 @@ public class Pet {
 
     @Override
     public String toString() {
-        return "Pet{" + "idPet=" + idPet + ", nomePet=" + nomePet + ", idadePet=" + idadePet + ", tipo=" + tipo + '}';
+        return "Pet{" + "id=" + id + ", nome=" + nome + ", idade=" + idade + ", tipo=" + tipo + '}';
     }
+
+   
+
 
     
     

@@ -15,28 +15,28 @@ import javax.swing.JOptionPane;
  * @author marcelo
  */
 public class ManterPet {
-        public static void montarTelaPet(){     
+        public static void montarTela(){     
             int ops = Integer.parseInt(JOptionPane.showInputDialog("Inserir Pet = 1, Listar Pet= 2, Buscar Pet = 3, Alterar Pet = 4, Excluir Pet = 5"));
             
             if( ops == 1){
-            inserirPet();
+            inserir();
             }
         if( ops == 2){
-            listarPet();
+            listar();
         }
         if( ops == 3){
-            buscarPet();
+            buscar();
         }
         if( ops == 4){
-            alterarPet();
+            alterar();
         }
         if( ops == 5){
-            excluirPet();
+            excluir();
         }
             
             
         }
-        public static void inserirPet(){
+        public static void inserir(){
             JOptionPane.showMessageDialog(null, "INSERIR PET");
             
             String nomePet = JOptionPane.showInputDialog("ENTRE COM O NOME");
@@ -44,55 +44,55 @@ public class ManterPet {
             String tipo = JOptionPane.showInputDialog("ENTRE COM O TIPO");
             
             Pet animal = new Pet(0, nomePet, idadePet, tipo);
-            ControlePet contP = new ControlePet();
-            animal =  contP.inserirPet(animal);
+            ControlePet contPet = new ControlePet();
+            animal =  contPet.inserir(animal);
             JOptionPane.showMessageDialog(null,"Pet = " + animal.toString());
         }
-        public static void listarPet(){
+        public static void listar(){
             JOptionPane.showMessageDialog(null, "LISTAR PET");
-            String nomePet = JOptionPane.showInputDialog("Entre com o nome do Pet");
+            String nome = JOptionPane.showInputDialog("Entre com o nome do Pet");
             
-            Pet animal = new Pet(nomePet);
-            ControlePet contP = new ControlePet();
-            List<Pet> listaPe = contP.listarPet(animal);
+            Pet animal = new Pet(nome);
+            ControlePet contPet = new ControlePet();
+            List<Pet> listaP = contPet.listar(animal);
             
-           listaPe.forEach ((animalL)->{
+           listaP.forEach ((animalL)->{
                JOptionPane.showMessageDialog(null,animalL.toString());
            });
             
         }
-        public static void buscarPet(){
+        public static void buscar(){
             JOptionPane.showMessageDialog(null,"Buscar PET");
-            int idPe = Integer.parseInt(JOptionPane.showInputDialog("Entre como o ID PET"));
+            int id = Integer.parseInt(JOptionPane.showInputDialog("Entre como o ID PET"));
             
-            Pet animal = new Pet(idPe);
-            ControlePet contP = new ControlePet();
-            animal = contP.buscarPet(animal);
+            Pet animal = new Pet(id);
+            ControlePet contPet = new ControlePet();
+            animal = contPet.buscar(animal);
             
             JOptionPane.showMessageDialog(null,"PET = " + animal.toString());
         
         }
-        public static void alterarPet(){
+        public static void alterar(){
             JOptionPane.showMessageDialog(null,"Alterar PET");
-            int idPe = Integer.parseInt(JOptionPane.showInputDialog("Entre como o ID PET"));
-            String nomePet = JOptionPane.showInputDialog("ENTRE COM O NOME");
-            String idadePet = JOptionPane.showInputDialog("ENTRE COM IDADE");
+            int id = Integer.parseInt(JOptionPane.showInputDialog("Entre como o ID PET"));
+            String nome = JOptionPane.showInputDialog("ENTRE COM O NOME");
+            String idade = JOptionPane.showInputDialog("ENTRE COM IDADE");
             String tipo = JOptionPane.showInputDialog("ENTRE COM O TIPO");
             
-            Pet animal = new Pet(idPe, nomePet, idadePet, tipo);
-            ControlePet contP = new ControlePet();
-            animal = contP.buscarPet(animal);
+            Pet animal = new Pet(id, nome, idade, tipo);
+            ControlePet contPet = new ControlePet();
+            animal = contPet.buscar(animal);
             JOptionPane.showMessageDialog(null,"PET = " + animal.toString());
             
         }
         
-        public static void excluirPet(){
+        public static void excluir(){
             JOptionPane.showMessageDialog(null, "EXCLUIR PET");
-            int idPe = Integer.parseInt(JOptionPane.showInputDialog("ENTRE COM O ID PET"));
+            int id = Integer.parseInt(JOptionPane.showInputDialog("ENTRE COM O ID PET"));
             
-            Pet animal = new Pet(idPe);
-            ControlePet contP = new ControlePet();
-            animal = contP.excluirPet(animal);
+            Pet animal = new Pet(id);
+            ControlePet contPet = new ControlePet();
+            animal = contPet.excluir(animal);
             JOptionPane.showMessageDialog(null,"Pet = " + animal.toString());
             
         

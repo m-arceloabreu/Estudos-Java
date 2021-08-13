@@ -6,7 +6,7 @@
 package dm20212m.controller;
 
 import dm20212m.model.bean.Pet;
-import java.util.ArrayList;
+import dm20212m.model.dao.DaoPet;
 import java.util.List;
 
 /**
@@ -14,29 +14,25 @@ import java.util.List;
  * @author marcelo
  */
 public class ControlePet {
+    static DaoPet daoPet = new DaoPet();
     
-     public Pet inserirPet(Pet pe){
-        System.out.println("EXE INSERIR");
-            pe.setIdPet(1);
-             return pe;
+     public Pet inserir(Pet p){
+        
+             return daoPet.inserir(p);
     }
-     public List<Pet> listarPet(Pet pe){
-        System.out.println("EXE LISTAR");
-        List<Pet> listaPe= new ArrayList<>();
-            listaPe.add(pe);
-            
-             return listaPe;
+     public List<Pet> listar(Pet p){
+        return daoPet.listar(p);
     }
-     public Pet buscarPet(Pet pe){
-        System.out.println("EXE BUSCAR");
-             return pe;
+     public Pet buscar(Pet p){
+        
+         return daoPet.buscar(p);
     }
-    public Pet alterarPet(Pet pe){
-        System.out.println("EXE ALTERAR");
-             return pe;
+    public Pet alterar(Pet p){
+        
+        return daoPet.alterar(p);
     }
-    public Pet excluirPet (Pet pe){
-        System.out.println("EXE EXCLUIR");
-             return pe;
+    public Pet excluir(Pet p){
+        
+        return daoPet.excluir(p);
     }
 }

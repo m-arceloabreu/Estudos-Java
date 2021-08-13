@@ -6,6 +6,7 @@
 package dm20212m;
 
 import dm20212m.view.manterpessoa.ManterPessoa;
+import dm20212m.view.manterpessoaopet.ManterPessoaPet;
 import dm20212m.view.manterpet.ManterPet;
 import javax.swing.JOptionPane;
 
@@ -27,8 +28,11 @@ public class Dm20212m {
             ManterPessoa.montarTela();
         }
         if (ops == 2){
-            ManterPet.montarTelaPet();
+            ManterPet.montarTela();
         }
+        if (ops == 3){
+            ManterPessoaPet.montarTela();
+                    }
         
         
     }
