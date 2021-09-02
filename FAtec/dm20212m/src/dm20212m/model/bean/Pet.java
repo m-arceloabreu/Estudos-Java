@@ -7,7 +7,7 @@ package dm20212m.model.bean;
 
 /**
  *
- * @author marcelo
+ * @author User
  */
 public class Pet {
     
@@ -67,13 +67,7 @@ public class Pet {
     public String toString() {
         return "Pet{" + "id=" + id + ", nome=" + nome + ", idade=" + idade + ", tipo=" + tipo + '}';
     }
-
-   
-
-
-    
     
     
     
 }
-

@@ -7,38 +7,39 @@ package dm20212m.controller;
 
 import dm20212m.model.bean.Pessoa;
 import dm20212m.model.dao.DaoPessoa;
+import java.sql.SQLException;
 import java.util.List;
-
 
 /**
  *
- * @author marcelo
+ * @author User
  */
 public class ControlePessoa {
+
+    static DaoPessoa daoP;
     
-    static DaoPessoa daoP = new DaoPessoa();
+    public ControlePessoa () throws SQLException, ClassNotFoundException {
+        daoP = new DaoPessoa();
+    }
+
+    public Pessoa inserir(Pessoa p) throws SQLException {
+        return daoP.inserir(p);
+    }
+
+    public List<Pessoa> listar(Pessoa p) throws SQLException {
+        return daoP.listar(p);
+    }
+
+    public Pessoa buscar(Pessoa p) throws SQLException {
+        return daoP.buscar(p);
+    }
+
+    public Pessoa alterar(Pessoa p) throws SQLException {
+        return daoP.alterar(p);
+    }
     
+    public Pessoa excluir(Pessoa p) throws SQLException {
+        return daoP.excluir(p);
+    }
     
-    public Pessoa inserirPessoa(Pessoa p){
-       
-           
-             return daoP.inserirPessoa(p);
-    }
-    public List<Pessoa> listarPessoa(Pessoa p){
-     
-             return daoP.listarPessoa(p);
-    }
-    public Pessoa buscarPessoa(Pessoa p){
-        
-            return daoP.buscarPessoa(p);
-    }
-    public Pessoa alterarPessoa(Pessoa p){
-        
-        return daoP.alterarPessoa(p);
-    }
-    public Pessoa excluirPessoa(Pessoa p){
-       
-        return daoP.excluirPessoa(p);
-    }
- 
 }

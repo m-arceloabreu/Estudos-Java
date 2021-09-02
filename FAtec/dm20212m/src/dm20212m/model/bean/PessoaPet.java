@@ -7,16 +7,16 @@ package dm20212m.model.bean;
 
 /**
  *
- * @author marcelo
+ * @author User
  */
 public class PessoaPet {
     
-    private  int id;
+    private int id;
     private int idPes;
     private int idPet;
     private String obs;
     private Pessoa pes;
-    private Pet animal;
+    private Pet pet;
 
     public PessoaPet(int id) {
         this.id = id;
@@ -73,18 +73,18 @@ public class PessoaPet {
         this.pes = pes;
     }
 
-    public Pet getAnimal() {
-        return animal;
+    public Pet getPet() {
+        return pet;
     }
 
-    public void setAnimal(Pet animal) {
-        this.animal = animal;
+    public void setPet(Pet pet) {
+        this.pet = pet;
     }
 
     @Override
     public String toString() {
-        return "PessoaPet{" + "id=" + id + ", idPes=" + idPes + ", idPet=" + idPet + ", obs=" + obs + ", pes=" + pes + ", animal=" + animal + '}';
+        return "PessoaPet{" + "id=" + id + ", idPes=" + idPes + ", idPet=" + idPet + ", obs=" + obs + '}';
     }
-    
+
     
 }

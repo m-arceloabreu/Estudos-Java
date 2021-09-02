@@ -7,17 +7,16 @@ package dm20212m.model.bean;
 
 /**
  *
- * @author marcelo
+ * @author User
  */
 public class Pessoa {
     
-    // definição de atributos
-    private int  id;
+    private int id;
     private String nome;
     private String idade;
     private String genero;
-    private String altura;
     private String peso;
+    private String altura;
 
     public Pessoa(int id) {
         this.id = id;
@@ -27,13 +26,13 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public Pessoa(int id, String nome, String idade, String genero, String altura, String peso) {
+    public Pessoa(int id, String nome, String idade, String altura, String genero, String peso) {
         this.id = id;
         this.nome = nome;
         this.idade = idade;
         this.genero = genero;
-        this.altura = altura;
         this.peso = peso;
+        this.altura = altura;
     }
 
     public int getId() {
@@ -68,14 +67,6 @@ public class Pessoa {
         this.genero = genero;
     }
 
-    public String getAltura() {
-        return altura;
-    }
-
-    public void setAltura(String altura) {
-        this.altura = altura;
-    }
-
     public String getPeso() {
         return peso;
     }
@@ -84,11 +75,17 @@ public class Pessoa {
         this.peso = peso;
     }
 
+    public String getAltura() {
+        return altura;
+    }
+
+    public void setAltura(String altura) {
+        this.altura = altura;
+    }
+
     @Override
     public String toString() {
-        return "Pessoa{" + "id=" + id + ", nome=" + nome + ", idade=" + idade + ", genero=" + genero + ", altura=" + altura + ", peso=" + peso + '}';
+        return "Pessoa{" + "id=" + id + ", nome=" + nome + ", idade=" + idade + ", genero=" + genero + ", peso=" + peso + ", altura=" + altura + '}';
     }
-    
-  
     
 }
