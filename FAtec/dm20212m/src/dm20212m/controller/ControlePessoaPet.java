@@ -38,6 +38,7 @@ public class ControlePessoaPet {
         for (PessoaPet listaPP2 : listaPP) {
             cPe = new ControlePessoa();
             cPt = new ControlePet();
+            
             Pessoa pesEntrada = new Pessoa(listaPP2.getIdPes());
             Pet petEntrada = new Pet(listaPP2.getIdPet());
             Pessoa pesSaida = cPe.buscar(pesEntrada);
