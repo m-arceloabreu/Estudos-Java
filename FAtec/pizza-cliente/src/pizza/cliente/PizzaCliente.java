@@ -8,7 +8,7 @@ package pizza.cliente;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import pizzacliente.view.mantercliente.manterCliente;
-import pizzacliente.view.manterpedido.manterPedido;
+import pizzacliente.view.mantertipo.ManterTipo;
 
 /**
  *
@@ -28,7 +28,7 @@ public class PizzaCliente {
             manterCliente.montarTela();
         }
         if(ops == 2){
-            manterPedido.montarTela();
+            ManterTipo.montarTela();
         }
         }
 
