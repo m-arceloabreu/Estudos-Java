@@ -10,67 +10,64 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import pizzacliente.util.ConexaoDb;
 import java.util.ArrayList;
 import java.util.List;
-import pizzacliente.model.bean.Pedido;
+import pizzacliente.model.bean.ClientePedido;
+import pizzacliente.util.ConexaoDb;
 
 /**
  *
  * @author marcelo
  */
-public class DaoPedido {
-    
+public class DaoClientePedido {
     private final Connection c;
-    
-    public DaoPedido() throws SQLException, ClassNotFoundException{
+   
+    public DaoClientePedido() throws SQLException, ClassNotFoundException{
         this.c = new ConexaoDb().getConnection();
     }
-    
-     public Pedido inserir (Pedido pe) throws SQLException {
+
+    public ClientePedido inserir (ClientePedido cp) throws SQLException {
         
-        String sql = "insert into pedido_ped" + " (ped_sabor,ped_tamanho,ped_borda,ped_obs,ped_bebida)" + " values (?,?,?,?,?)";
+        String sql = "insert into cp_clientepedido" + " (cp_idCli,cp_idPed,cp_servir,cp_paga)" + " values (?,?,?,?)";
 
         // seta os valores
         try ( // prepared statement para inserção
             PreparedStatement stmt = c.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)) {
             // seta os valores
-            stmt.setString(1,pe.getSabor());
-            stmt.setString(2,pe.getTamanho());
-            stmt.setString(3,pe.getBorda());
-            stmt.setString(4,pe.getObs());
-            stmt.setString(5,pe.getBebida());
+            stmt.setInt(1,cp.getIdCli());
+            stmt.setInt(2,cp.getIdPed());
+            stmt.setString(3,cp.getServir());
+            stmt.setString(4,cp.getPaga());
             // executa
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next()) {
                 int id = rs.getInt(1);
-                pe.setId(id);
+                cp.setId(id);
             }
         }
         c.close();
-        return pe;
+        return cp;
     }
     
-    public Pedido buscar (Pedido pe) throws SQLException {
-        String sql = "select * from pedido_ped WHERE ped_id = ?";
-        Pedido retorno;
+    public ClientePedido buscar (ClientePedido cp) throws SQLException {
+        String sql = "select * from cp_clientepedido WHERE cp_id = ?";
+        ClientePedido retorno;
         // seta os valores
         try (PreparedStatement stmt = this.c.prepareStatement(sql)) {
             // seta os valores
-            stmt.setInt(1,pe.getId());
+            stmt.setInt(1,cp.getId());
             // executa
             ResultSet rs = stmt.executeQuery();
             retorno = null;
             while (rs.next()) {
                 // criando o objeto Usuario
-                retorno = new Pedido(
+                retorno = new ClientePedido(
                         rs.getInt(1),
-                        rs.getString(2),
-                        rs.getString(3),
+                        rs.getInt(2),
+                        rs.getInt(3),
                         rs.getString(4),
-                        rs.getString(5),
-                        rs.getString(6));
+                        rs.getString(5));
                 // adiciona o usu à lista de pessoa
             }
         }
@@ -78,67 +75,65 @@ public class DaoPedido {
         return retorno;
     }
 
-    public List<Pedido> listar (Pedido pe) throws SQLException {
+    public List<ClientePedido> listar (ClientePedido cp) throws SQLException {
          // usus: array armazena a lista de registros
-        List<Pedido> listaPe = new ArrayList<>();
+        List<ClientePedido> listaCp = new ArrayList<>();
        
-        String sql = "select * from pedido_ped where ped_sabor like ?";
+        String sql = "select * from cp_clientepedido where cp_servir like ?";
         // seta os valores
         try (PreparedStatement stmt = this.c.prepareStatement(sql)) {
             // seta os valores
-            stmt.setString(1,"%" + pe.getSabor()+ "%");
+            stmt.setString(1,"%" + cp.getServir()+ "%");
             
             ResultSet rs = stmt.executeQuery();
             
             while (rs.next()) {
                 // criando o objeto Usuario
-                Pedido peSaida = new Pedido(
+                ClientePedido cpSaida = new ClientePedido(
                         rs.getInt(1),
-                        rs.getString(2),
-                        rs.getString(3),
+                        rs.getInt(2),
+                        rs.getInt(3),
                         rs.getString(4),
-                        rs.getString(5),
-                        rs.getString(6));
+                        rs.getString(5));
                 // adiciona o usu à lista de usus
-                listaPe.add(peSaida);
+                listaCp.add(cpSaida);
             }
             
             rs.close();
         }
-        return listaPe;
+        return listaCp;
     }
-
-    public Pedido alterar (Pedido pe) throws SQLException {
-        String sql = "UPDATE pedido_ped SET ped_sabor = ?, ped_tamanho = ?, ped_borda = ?, ped_obs = ?, ped_bebida = ?";
+//parei aqui
+    public ClientePedido alterar (ClientePedido cp) throws SQLException {
+        String sql = "UPDATE cp_clientepedido SET cp_idCli = ?, cp_idPed = ?, cp_servir = ?, cp_paga = ? WHERE cp_id = ?";
         // seta os valores
         // prepared statement para inserção
         try (PreparedStatement stmt = c.prepareStatement(sql)) {
             // seta os valores
-            stmt.setString(1,pe.getSabor());
-            stmt.setString(2,pe.getTamanho());
-            stmt.setString(3,pe.getBorda());
-            stmt.setString(4,pe.getObs());
-            stmt.setString(5,pe.getBebida());
-            
-            stmt.setInt(6,pe.getId());
+            stmt.setInt(1,cp.getIdCli());
+            stmt.setInt(2,cp.getIdPed());
+            stmt.setString(3,cp.getServir());
+            stmt.setString(4,cp.getPaga());
+            stmt.setInt(5,cp.getId());
             // executa
             stmt.execute();
         }
-        return pe;
+        return cp;
 
     }
 
-    public Pedido excluir (Pedido pe) throws SQLException {
-         String sql = "delete from pedido_ped WHERE ped_id = ?";
+    public ClientePedido excluir (ClientePedido cp) throws SQLException {
+         String sql = "delete from cp_clientepedido WHERE cp_id = ?";
         // seta os valores
         // prepared statement para inserção
         try (PreparedStatement stmt = c.prepareStatement(sql)) {
             // seta os valores
-            stmt.setInt(1,pe.getId());
+            stmt.setInt(1,cp.getId());
             // executa
             stmt.execute();
         }
         c.close();
-        return pe;
+        return cp;
     }
+    
 }

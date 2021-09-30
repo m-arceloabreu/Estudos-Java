@@ -1,144 +1,132 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package pizzacliente.model.dao;
 
+package dm20212m.model.dao;
+
+import dm20212m.model.bean.Professor;
+import dm20212m.util.ConexaoDb;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import pizzacliente.util.ConexaoDb;
 import java.util.ArrayList;
 import java.util.List;
-import pizzacliente.model.bean.Pedido;
 
-/**
- *
- * @author marcelo
- */
-public class DaoPedido {
+public class DaoProfessor {
     
     private final Connection c;
     
-    public DaoPedido() throws SQLException, ClassNotFoundException{
+    public DaoProfessor() throws SQLException, ClassNotFoundException{
         this.c = new ConexaoDb().getConnection();
     }
     
-     public Pedido inserir (Pedido pe) throws SQLException {
+     public Professor inserir (Professor p) throws SQLException {
         
-        String sql = "insert into pedido_ped" + " (ped_sabor,ped_tamanho,ped_borda,ped_obs,ped_bebida)" + " values (?,?,?,?,?)";
+        String sql = "insert into pro_professor" + " (pro_nome,pro_classificacao,pro_materia,pro_area)" + " values (?,?,?,?,?)";
 
         // seta os valores
         try ( // prepared statement para inserção
             PreparedStatement stmt = c.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)) {
             // seta os valores
-            stmt.setString(1,pe.getSabor());
-            stmt.setString(2,pe.getTamanho());
-            stmt.setString(3,pe.getBorda());
-            stmt.setString(4,pe.getObs());
-            stmt.setString(5,pe.getBebida());
+            stmt.setString(1,p.getNome());
+            stmt.setString(2,p.getClassificacao());
+            stmt.setString(3,p.getMateria());
+            stmt.setString(4,p.getArea());
+
             // executa
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next()) {
                 int id = rs.getInt(1);
-                pe.setId(id);
+                p.setId(id);
             }
         }
         c.close();
-        return pe;
+        return p;
     }
     
-    public Pedido buscar (Pedido pe) throws SQLException {
-        String sql = "select * from pedido_ped WHERE ped_id = ?";
-        Pedido retorno;
+    public Professor buscar (Professor p) throws SQLException {
+        String sql = "select * from pro_professor WHERE pro_id = ?";
+        Professor retorno;
         // seta os valores
         try (PreparedStatement stmt = this.c.prepareStatement(sql)) {
             // seta os valores
-            stmt.setInt(1,pe.getId());
+            stmt.setInt(1,p.getId());
             // executa
             ResultSet rs = stmt.executeQuery();
             retorno = null;
             while (rs.next()) {
                 // criando o objeto Usuario
-                retorno = new Pedido(
+                retorno = new Professor(
                         rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
-                        rs.getString(5),
-                        rs.getString(6));
-                // adiciona o usu à lista de pessoa
+                        rs.getString(5));
+                // adiciona o usu à lista de professor
             }
         }
         c.close();
         return retorno;
     }
 
-    public List<Pedido> listar (Pedido pe) throws SQLException {
+    public List<Professor> listar (Professor p) throws SQLException {
          // usus: array armazena a lista de registros
-        List<Pedido> listaPe = new ArrayList<>();
+        List<Professor> listaP = new ArrayList<>();
        
-        String sql = "select * from pedido_ped where ped_sabor like ?";
+        String sql = "select * from pro_professor where pro_nome like ?";
         // seta os valores
         try (PreparedStatement stmt = this.c.prepareStatement(sql)) {
             // seta os valores
-            stmt.setString(1,"%" + pe.getSabor()+ "%");
+            stmt.setString(1,"%" + p.getNome()+ "%");
             
             ResultSet rs = stmt.executeQuery();
             
             while (rs.next()) {
                 // criando o objeto Usuario
-                Pedido peSaida = new Pedido(
+                Professor pSaida = new Professor(
                         rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
-                        rs.getString(5),
-                        rs.getString(6));
+                        rs.getString(5));
                 // adiciona o usu à lista de usus
-                listaPe.add(peSaida);
+                listaP.add(pSaida);
             }
             
             rs.close();
         }
-        return listaPe;
+        return listaP;
     }
 
-    public Pedido alterar (Pedido pe) throws SQLException {
-        String sql = "UPDATE pedido_ped SET ped_sabor = ?, ped_tamanho = ?, ped_borda = ?, ped_obs = ?, ped_bebida = ?";
+    public Professor alterar (Professor p) throws SQLException {
+        String sql = "UPDATE pro_professor SET pro_nome = ?, pro_classificacao = ?, pro_materia = ?, pro_area = ? WHERE pes_id = ?";
         // seta os valores
         // prepared statement para inserção
         try (PreparedStatement stmt = c.prepareStatement(sql)) {
             // seta os valores
-            stmt.setString(1,pe.getSabor());
-            stmt.setString(2,pe.getTamanho());
-            stmt.setString(3,pe.getBorda());
-            stmt.setString(4,pe.getObs());
-            stmt.setString(5,pe.getBebida());
-            
-            stmt.setInt(6,pe.getId());
+            stmt.setString(1,p.getNome());
+            stmt.setString(2,p.getClassificacao());
+            stmt.setString(3,p.getMateria());
+            stmt.setString(4,p.getArea());
+            stmt.setInt(6,p.getId());
             // executa
             stmt.execute();
         }
-        return pe;
+        return p;
 
     }
 
-    public Pedido excluir (Pedido pe) throws SQLException {
-         String sql = "delete from pedido_ped WHERE ped_id = ?";
+    public Professor excluir (Professor p) throws SQLException {
+         String sql = "delete from pro_professor WHERE pes_id = ?";
         // seta os valores
         // prepared statement para inserção
         try (PreparedStatement stmt = c.prepareStatement(sql)) {
             // seta os valores
-            stmt.setInt(1,pe.getId());
+            stmt.setInt(1,p.getId());
             // executa
             stmt.execute();
         }
         c.close();
-        return pe;
+        return p;
     }
 }

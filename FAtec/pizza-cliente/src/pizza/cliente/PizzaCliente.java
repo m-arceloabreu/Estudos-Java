@@ -8,7 +8,8 @@ package pizza.cliente;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import pizzacliente.view.mantercliente.manterCliente;
-import pizzacliente.view.mantertipo.ManterTipo;
+import pizzacliente.view.manterclientepedido.manterClientePedido;
+import pizzacliente.view.manterpedido.manterPedido;
 
 /**
  *
@@ -23,12 +24,16 @@ public class PizzaCliente {
      */
     public  static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-        int ops = Integer.parseInt(JOptionPane.showInputDialog("CLIENTE = 1, PEDIDO = 2 "));
+        int ops = Integer.parseInt(JOptionPane.showInputDialog("CLIENTE = 1, PEDIDO = 2 , CLIENTE-PEDIDO = 3"));
         if(ops == 1 ) {
             manterCliente.montarTela();
         }
         if(ops == 2){
-            ManterTipo.montarTela();
+            manterPedido.montarTela();
+        }
+        if(ops == 3){
+            manterClientePedido.montarTela();
+        
         }
         }
 
