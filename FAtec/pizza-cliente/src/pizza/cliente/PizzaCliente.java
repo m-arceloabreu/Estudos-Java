@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import pizzacliente.view.mantercliente.manterCliente;
 import pizzacliente.view.manterclientepedido.manterClientePedido;
 import pizzacliente.view.manterpedido.manterPedido;
+import pizzacliente.view.manterusuario.ManterUsuario;
 
 /**
  *
@@ -23,8 +24,12 @@ public class PizzaCliente {
      * @throws java.lang.ClassNotFoundException
      */
     public  static void main(String[] args) throws SQLException, ClassNotFoundException {
+        
+        boolean retorno = ManterUsuario.validaUsuario();
 
-        int ops = Integer.parseInt(JOptionPane.showInputDialog("CLIENTE = 1, PEDIDO = 2 , CLIENTE-PEDIDO = 3"));
+        int ops = Integer.parseInt(JOptionPane.showInputDialog("CLIENTE = 1, PEDIDO = 2 , CLIENTE-PEDIDO = 3, USUARIO = 4"));
+        
+        if(retorno){
         if(ops == 1 ) {
             manterCliente.montarTela();
         }
@@ -33,6 +38,12 @@ public class PizzaCliente {
         }
         if(ops == 3){
             manterClientePedido.montarTela();
+        }
+        if(ops == 4 ) ManterUsuario.montarTela();
+        
+        else {
+            JOptionPane.showMessageDialog(null,"Usuario invalido");
+        }
         
         }
         }
